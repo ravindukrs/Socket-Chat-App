@@ -16,6 +16,7 @@ public class ChatController {
     @SendTo("/topic/public")
     public Message register(@Payload Message message, SimpMessageHeaderAccessor headerAccessor){
         //Put the current user in header session attribute
+        System.out.println("Register Controller");
         headerAccessor.getSessionAttributes().put("username", message.getSender());
         return message;
     }
