@@ -1,6 +1,6 @@
-package controller;
+package com.example.socketlovers;
 
-import model.Message;
+import com.example.socketlovers.Message;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -16,7 +16,6 @@ public class ChatController {
     @SendTo("/topic/public")
     public Message register(@Payload Message message, SimpMessageHeaderAccessor headerAccessor){
         //Put the current user in header session attribute
-        System.out.println("Register Controller");
         headerAccessor.getSessionAttributes().put("username", message.getSender());
         return message;
     }

@@ -22,7 +22,7 @@ function connect(event) {
     if(username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
-        var socket = new SockJS('http://localhost:8080/chats');
+        var socket = new SockJS('/chats');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, onConnected, onError);
 
@@ -117,5 +117,5 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', send, true)
+usernameForm.addEventListener('submit', connect, true);
+messageForm.addEventListener('submit', send, true);

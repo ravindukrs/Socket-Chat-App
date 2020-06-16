@@ -1,4 +1,4 @@
-package config;
+package com.example.socketlovers;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -23,6 +23,7 @@ public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         //Enable Configure Message Broker
-        registry.setApplicationDestinationPrefixes("/app").enableSimpleBroker("/topic");
+        registry.enableSimpleBroker("/topic");
+        registry.setApplicationDestinationPrefixes("/app");
     }
 }

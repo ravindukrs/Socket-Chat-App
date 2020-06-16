@@ -1,10 +1,13 @@
-package model;
+package com.example.socketlovers;
 
 public class Message {
     private String content;
     private String sender;
     private MessageType type;
 
+    public enum MessageType {
+        CHAT, LEAVE, JOIN
+    }
     public String getContent() {
         return content;
     }
@@ -29,7 +32,7 @@ public class Message {
         this.type = type;
     }
 
-    public enum MessageType {CHAT,LEAVE,JOIN}
+
 
 }
 
