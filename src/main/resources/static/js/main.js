@@ -58,7 +58,7 @@ function send(event) {
     if(messageContent && stompClient) {
         var chatMessage = {
             sender: username,
-            content: messageInput.value,
+            content: cipher(messageInput.value.toString(),1),
             type: 'CHAT'
         };
 
@@ -71,6 +71,7 @@ function send(event) {
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
+
 
     var messageElement = document.createElement('li');
 
@@ -95,13 +96,14 @@ function onMessageReceived(payload) {
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
     }
-
+    console.log("message.content now: "+message.content);
+    console.log("See if this works: ", message.content.includes("joined!")? (message.content):(cipher(message.content, 26-1)))
     var textElement = document.createElement('p');
-    var messageText = document.createTextNode(message.content);
+    var messageText = document.createTextNode(message.content.includes("joined!")? (message.content):(cipher(message.content, 26-1)));
     textElement.appendChild(messageText);
 
     messageElement.appendChild(textElement);
-
+    console.log("textElement now: "+message.content);
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
 }
@@ -115,6 +117,38 @@ function getAvatarColor(messageSender) {
 
     var index = Math.abs(hash % colors.length);
     return colors[index];
+}
+
+
+//Encryption (Front end)
+//check if letter is uppercase
+function isUpperCase(str) {
+
+    return str === str.toUpperCase();
+}
+
+//decipher the string
+function cipher(str, key){
+    console.log("CIPHER STRING :"+str)
+    let decipher = '';
+
+    //decipher each letter
+    for(let i = 0; i < str.length; i++){
+        if(str[i].includes(" ")){
+            decipher+=str[i];
+            continue;
+        }
+        //if letter is uppercase then add uppercase letters
+        if(isUpperCase(str[i])){
+            decipher += String.fromCharCode((str.charCodeAt(i) + key - 65) % 26 + 65);
+        }else{
+            //else add lowercase letters
+            decipher += String.fromCharCode((str.charCodeAt(i) + key - 97) % 26 + 97);
+        }
+    }
+
+
+    return decipher;
 }
 
 usernameForm.addEventListener('submit', connect, true);
