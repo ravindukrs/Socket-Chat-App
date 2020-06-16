@@ -1,6 +1,6 @@
-package com.example.socketlovers;
+package com.example.socketlovers.controller;
 
-import com.example.socketlovers.Message;
+import com.example.socketlovers.model.Message;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;

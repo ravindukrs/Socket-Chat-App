@@ -1,4 +1,4 @@
-package com.example.socketlovers;
+package com.example.socketlovers.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

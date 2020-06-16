@@ -1,4 +1,4 @@
-package com.example.socketlovers;
+package com.example.socketlovers.model;
 
 public class Message {
     private String content;
