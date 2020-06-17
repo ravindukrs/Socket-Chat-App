@@ -134,7 +134,8 @@ function cipher(str, key){
 
     //decipher each letter
     for(let i = 0; i < str.length; i++){
-        if(str[i].includes(" ")){
+        var letters = /^[A-Za-z]+$/;
+        if(str[i].includes(" ") || !str[i].match(letters)){
             decipher+=str[i];
             continue;
         }
